@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Windows10（ホストOS）上に Windows10（ゲストOS）を構築する | はとのす</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="技術ブログ">
+    
+    <link rel="preload" href="/assets/css/0.styles.992cb7aa.css" as="style"><link rel="preload" href="/assets/js/app.f4c5d8b9.js" as="script"><link rel="preload" href="/assets/js/2.5001a086.js" as="script"><link rel="preload" href="/assets/js/11.5342cc6b.js" as="script"><link rel="prefetch" href="/assets/js/10.3e45938f.js"><link rel="prefetch" href="/assets/js/12.1233e558.js"><link rel="prefetch" href="/assets/js/3.0de82c9b.js"><link rel="prefetch" href="/assets/js/4.09fd2c39.js"><link rel="prefetch" href="/assets/js/5.fc791712.js"><link rel="prefetch" href="/assets/js/6.ffe6f60a.js"><link rel="prefetch" href="/assets/js/7.b5dc359c.js"><link rel="prefetch" href="/assets/js/8.e9530baa.js"><link rel="prefetch" href="/assets/js/9.c0ac6061.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.992cb7aa.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">はとのす</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/posts/" class="nav-link router-link-active">
+  Posts
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/posts/" class="nav-link router-link-active">
+  Posts
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="frontmatter-title"><a href="#frontmatter-title" class="header-anchor">#</a> Windows10（ホストOS）上に Windows10（ゲストOS）を構築する</h1> <h2 id="目的"><a href="#目的" class="header-anchor">#</a> 目的</h2> <p>VirtualBox + Vagrant で、Windows10 上に Windows10 の仮想環境を構築したい</p> <h2 id="きっかけ"><a href="#きっかけ" class="header-anchor">#</a> きっかけ</h2> <p>Windows10 上で開発することになったが、Windows10をそのまま開発に使うのは個人的に好きじゃない。<br>
+開発環境を切り離したいが、職場の都合で Docker は使えない為。</p> <p>ちなみに、普段の開発では VirtualBox + Vagrant で構築した Linux環境 (Ubuntu, CentOS) で開発している。</p> <h2 id="環境"><a href="#環境" class="header-anchor">#</a> 環境</h2> <h3 id="os"><a href="#os" class="header-anchor">#</a> OS</h3> <ul><li>ホスト：Windows 10</li> <li>ゲスト：Windows 10</li></ul> <h3 id="ツール"><a href="#ツール" class="header-anchor">#</a> ツール</h3> <ul><li>VirtualBox：6.1.4</li> <li>Vagrant：2.2.7</li></ul> <h2 id="つまづいた所"><a href="#つまづいた所" class="header-anchor">#</a> つまづいた所</h2> <ul><li><code>vagrant up</code> の途中でエラーが出る
+<ul><li>仮想マシンの起動自体はできている</li></ul></li> <li>ゲストOSに自動でログインしてくれない</li></ul> <h2 id="手順"><a href="#手順" class="header-anchor">#</a> 手順</h2> <h3 id="boxファイル準備"><a href="#boxファイル準備" class="header-anchor">#</a> boxファイル準備</h3> <p><a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/" target="_blank" rel="noopener noreferrer">公式が用意してくれている box ファイル<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> を使用する。<br>
+このOSはブラウザテスト用らしいが、評価版OSとの違いは不明。</p> <p><strong>Virtual Machines</strong> で <code>MSEdge on Win10 (x64) Stable</code>、<strong>Choose a VM platform</strong> で <code>Vagrant</code> を選択して zipファイルをダウンロードするだけ。<br>
+お手軽。</p> <p>[f🆔hato_poppo_maru:20201108012137p:plain]</p> <p>ダウンロードした zip ファイルは解凍して、中身をVagrantfileと同じフォルダに格納した。<br>
+名前が長いのはあまり好きじゃないので<code>win10.box</code>にリネーム。</p> <h3 id="vagrantfile生成"><a href="#vagrantfile生成" class="header-anchor">#</a> Vagrantfile生成</h3> <p>仮想マシン用のフォルダを作成し、そこにVagrantfileを生成する。
+Vagrantfile が何なのかは割愛。</p> <p>今回は <code>E:\Development\Vagrant\win10-dev</code> を使うことにした。<br>
+以下、GitBash でのコマンド実行。<br>
+※ cdコマンド以外は コマンドプロンプトでも同じコマンドで実行可能</p> <ul><li>移動</li></ul> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token builtin class-name">cd</span> /e/Development/Vagrant/win10-dev
+</code></pre></div><ul><li>Vagrantfile生成</li></ul> <div class="language-sh extra-class"><pre class="language-sh"><code>$ vagrant init
+</code></pre></div><p>これで <code>E:\Development\Vagrant\win10-dev</code> に Vagrantfile が生成される。</p> <h3 id="vagrantfile修正"><a href="#vagrantfile修正" class="header-anchor">#</a> Vagrantfile修正</h3> <p>いくつかの記事を参考にすると、以下のような記述が多かった。<br>
+※この設定ではうまくいかなかった。ホストOSの差か？</p> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># -*- mode: ruby -*-</span>
+<span class="token comment"># vi: set ft=ruby :</span>
+
+<span class="token comment"># All Vagrant configuration is done below. The &quot;2&quot; in Vagrant.configure</span>
+<span class="token comment"># configures the configuration version (we support older styles for</span>
+<span class="token comment"># backwards compatibility). Please don't change it unless you know what</span>
+<span class="token comment"># you're doing.</span>
+<span class="token constant">Vagrant</span><span class="token punctuation">.</span>configure<span class="token punctuation">(</span><span class="token string">&quot;2&quot;</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>config<span class="token operator">|</span>
+  <span class="token comment"># The most common configuration options are documented and commented below.</span>
+  <span class="token comment"># For a complete reference, please see the online documentation at</span>
+  <span class="token comment"># https://docs.vagrantup.com.</span>
+
+  <span class="token comment"># Every Vagrant development environment requires a box. You can search for</span>
+  <span class="token comment"># boxes at https://vagrantcloud.com/search.</span>
+  config<span class="token punctuation">.</span>vm<span class="token punctuation">.</span>box <span class="token operator">=</span> <span class="token string">&quot;./win10.box&quot;</span>
+  config<span class="token punctuation">.</span>vm<span class="token punctuation">.</span>guest <span class="token operator">=</span> <span class="token string">&quot;windows&quot;</span>
+  config<span class="token punctuation">.</span>ssh<span class="token punctuation">.</span>username <span class="token operator">=</span> <span class="token string">&quot;IEUser&quot;</span>
+  config<span class="token punctuation">.</span>ssh<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">&quot;Passw0rd!&quot;</span>
+  config<span class="token punctuation">.</span>ssh<span class="token punctuation">.</span>insert_key <span class="token operator">=</span> <span class="token boolean">false</span>
+
+  <span class="token comment"># Disable automatic box update checking. If you disable this, then</span>
+  <span class="token comment"># boxes will only be checked for updates when the user runs</span>
+  <span class="token comment"># `vagrant box outdated`. This is not recommended.</span>
+  <span class="token comment"># config.vm.box_check_update = false</span>
+
+  <span class="token comment"># Create a forwarded port mapping which allows access to a specific port</span>
+  <span class="token comment"># within the machine from a port on the host machine. In the example below,</span>
+  <span class="token comment"># accessing &quot;localhost:8080&quot; will access port 80 on the guest machine.</span>
+  <span class="token comment"># NOTE: This will enable public access to the opened port</span>
+  <span class="token comment"># config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080</span>
+
+  <span class="token comment"># Create a forwarded port mapping which allows access to a specific port</span>
+  <span class="token comment"># within the machine from a port on the host machine and only allow access</span>
+  <span class="token comment"># via 127.0.0.1 to disable public access</span>
+  <span class="token comment"># config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080, host_ip: &quot;127.0.0.1&quot;</span>
+
+  <span class="token comment"># Create a private network, which allows host-only access to the machine</span>
+  <span class="token comment"># using a specific IP.</span>
+  <span class="token comment"># config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.10&quot;</span>
+
+  <span class="token comment"># Create a public network, which generally matched to bridged network.</span>
+  <span class="token comment"># Bridged networks make the machine appear as another physical device on</span>
+  <span class="token comment"># your network.</span>
+  <span class="token comment"># config.vm.network &quot;public_network&quot;</span>
+
+  <span class="token comment"># Share an additional folder to the guest VM. The first argument is</span>
+  <span class="token comment"># the path on the host to the actual folder. The second argument is</span>
+  <span class="token comment"># the path on the guest to mount the folder. And the optional third</span>
+  <span class="token comment"># argument is a set of non-required options.</span>
+  <span class="token comment"># config.vm.synced_folder &quot;../data&quot;, &quot;/vagrant_data&quot;</span>
+
+  <span class="token comment"># Provider-specific configuration so you can fine-tune various</span>
+  <span class="token comment"># backing providers for Vagrant. These expose provider-specific options.</span>
+  <span class="token comment"># Example for VirtualBox:</span>
+
+  config<span class="token punctuation">.</span>vm<span class="token punctuation">.</span>provider <span class="token string">&quot;virtualbox&quot;</span> <span class="token keyword">do</span> <span class="token operator">|</span>vb<span class="token operator">|</span>
+    <span class="token comment"># Display the VirtualBox GUI when booting the machine</span>
+    vb<span class="token punctuation">.</span>gui <span class="token operator">=</span> <span class="token boolean">true</span>
+
+    <span class="token comment"># Customize the amount of memory on the VM:</span>
+    vb<span class="token punctuation">.</span>memory <span class="token operator">=</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">4</span>
+  <span class="token keyword">end</span>
+
+  <span class="token comment"># View the documentation for the provider you are using for more</span>
+  <span class="token comment"># information on available options.</span>
+
+  <span class="token comment"># Enable provisioning with a shell script. Additional provisioners such as</span>
+  <span class="token comment"># Ansible, Chef, Docker, Puppet and Salt are also available. Please see the</span>
+  <span class="token comment"># documentation for more information about their specific syntax and use.</span>
+  <span class="token comment"># config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL</span>
+  <span class="token comment">#   apt-get update</span>
+  <span class="token comment">#   apt-get install -y apache2</span>
+  <span class="token comment"># SHELL</span>
+<span class="token keyword">end</span>
+</code></pre></div><h3 id="仮想環境構築開始"><a href="#仮想環境構築開始" class="header-anchor">#</a> 仮想環境構築開始</h3> <p>以下のコマンドで仮想環境を立ち上げることが出来る。<br>
+初回は諸々の環境構築を行うので、結構時間がかかる。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ vagrant up
+</code></pre></div><p>通常であれば問題なく進むが、今回は以下のようなエラーが発生した。</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token operator">==</span><span class="token operator">&gt;</span> default: Waiting <span class="token keyword">for</span> machine to boot. This may take a few minutes<span class="token punctuation">..</span>.
+    default: SSH address: <span class="token number">127.0</span>.0.1:2200
+    default: SSH username: IEUser
+    default: SSH auth method: password
+    default: Warning: Connection reset. Retrying<span class="token punctuation">..</span>.
+    default: Warning: Connection aborted. Retrying<span class="token punctuation">..</span>.
+Timed out <span class="token keyword">while</span> waiting <span class="token keyword">for</span> the machine to boot. This means that
+Vagrant was unable to communicate with the guest machine within
+the configured <span class="token punctuation">(</span><span class="token string">&quot;config.vm.boot_timeout&quot;</span> value<span class="token punctuation">)</span> <span class="token function">time</span> period.
+
+If you <span class="token function">look</span> above, you should be able to see the error<span class="token punctuation">(</span>s<span class="token punctuation">)</span> that
+Vagrant had when attempting to connect to the machine. These errors
+are usually good hints as to what may be wrong.
+
+If you<span class="token string">'re using a custom box, make sure that networking is properly
+working and you'</span>re able to connect to the machine. It is a common
+problem that networking isn't setup properly <span class="token keyword">in</span> these boxes.
+Verify that authentication configurations are also setup properly,
+as well.
+
+If the box appears to be booting properly, you may want to increase
+the <span class="token function">timeout</span> <span class="token punctuation">(</span><span class="token string">&quot;config.vm.boot_timeout&quot;</span><span class="token punctuation">)</span> value.
+</code></pre></div><p>出力内容からすると、ssh 接続でタイムアウトになっているような気がする。<br>
+というか Windows で ssh 接続って簡単に出来るものなのか…？</p> <p>この辺りの設定について <a href="https://www.vagrantup.com/docs/vagrantfile/machine_settings" target="_blank" rel="noopener noreferrer">Vagrant の公式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> を眺めていると以下の記述を発見。</p> <blockquote><p>config.vm.communicator (string)</p> <ul><li>The communicator type to use to connect to the guest box. By default this is &quot;ssh&quot;, but should be changed to &quot;winrm&quot; for Windows guests.</li></ul></blockquote> <p>ゲストOSが Windows の場合は <code>config.vm.communicator</code> を &quot;winrm&quot; に変更する必要があるらしい。</p> <p>※WinRM とは
+Windows Remote Management の略。
+名前の通り Windows を遠隔操作する為の機能であるが、リモートデスクトップと違いコマンドで操作出来るらしい。</p> <p>ということで、Vagrantfile に</p> <div class="language-sh extra-class"><pre class="language-sh"><code>config.vm.communicator <span class="token operator">=</span> <span class="token string">'winrm'</span>
+config.winrm.username <span class="token operator">=</span> <span class="token string">'IEUser'</span>
+config.winrm.password <span class="token operator">=</span> <span class="token string">'Passw0rd!'</span>
+</code></pre></div><p>を追加する。</p> <ul><li>変更後の Vagrantfile</li></ul> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># -*- mode: ruby -*-</span>
+<span class="token comment"># vi: set ft=ruby :</span>
+
+<span class="token comment"># All Vagrant configuration is done below. The &quot;2&quot; in Vagrant.configure</span>
+<span class="token comment"># configures the configuration version (we support older styles for</span>
+<span class="token comment"># backwards compatibility). Please don't change it unless you know what</span>
+<span class="token comment"># you're doing.</span>
+<span class="token constant">Vagrant</span><span class="token punctuation">.</span>configure<span class="token punctuation">(</span><span class="token string">&quot;2&quot;</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token operator">|</span>config<span class="token operator">|</span>
+  <span class="token comment"># The most common configuration options are documented and commented below.</span>
+  <span class="token comment"># For a complete reference, please see the online documentation at</span>
+  <span class="token comment"># https://docs.vagrantup.com.</span>
+
+  <span class="token comment"># Every Vagrant development environment requires a box. You can search for</span>
+  <span class="token comment"># boxes at https://vagrantcloud.com/search.</span>
+  config<span class="token punctuation">.</span>vm<span class="token punctuation">.</span>box <span class="token operator">=</span> <span class="token string">&quot;./win10.box&quot;</span>
+  config<span class="token punctuation">.</span>vm<span class="token punctuation">.</span>guest <span class="token operator">=</span> <span class="token string">&quot;windows&quot;</span>
+
+  config<span class="token punctuation">.</span>vm<span class="token punctuation">.</span>communicator <span class="token operator">=</span> <span class="token string">&quot;winrm&quot;</span>
+  config<span class="token punctuation">.</span>winrm<span class="token punctuation">.</span>username <span class="token operator">=</span> <span class="token string">&quot;IEUser&quot;</span>
+  config<span class="token punctuation">.</span>winrm<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">&quot;Passw0rd!&quot;</span>
+
+  <span class="token comment"># Disable automatic box update checking. If you disable this, then</span>
+  <span class="token comment"># boxes will only be checked for updates when the user runs</span>
+  <span class="token comment"># `vagrant box outdated`. This is not recommended.</span>
+  <span class="token comment"># config.vm.box_check_update = false</span>
+
+  <span class="token comment"># Create a forwarded port mapping which allows access to a specific port</span>
+  <span class="token comment"># within the machine from a port on the host machine. In the example below,</span>
+  <span class="token comment"># accessing &quot;localhost:8080&quot; will access port 80 on the guest machine.</span>
+  <span class="token comment"># NOTE: This will enable public access to the opened port</span>
+  <span class="token comment"># config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080</span>
+
+  <span class="token comment"># Create a forwarded port mapping which allows access to a specific port</span>
+  <span class="token comment"># within the machine from a port on the host machine and only allow access</span>
+  <span class="token comment"># via 127.0.0.1 to disable public access</span>
+  <span class="token comment"># config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080, host_ip: &quot;127.0.0.1&quot;</span>
+
+  <span class="token comment"># Create a private network, which allows host-only access to the machine</span>
+  <span class="token comment"># using a specific IP.</span>
+  <span class="token comment"># config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.10&quot;</span>
+
+  <span class="token comment"># Create a public network, which generally matched to bridged network.</span>
+  <span class="token comment"># Bridged networks make the machine appear as another physical device on</span>
+  <span class="token comment"># your network.</span>
+  <span class="token comment"># config.vm.network &quot;public_network&quot;</span>
+
+  <span class="token comment"># Share an additional folder to the guest VM. The first argument is</span>
+  <span class="token comment"># the path on the host to the actual folder. The second argument is</span>
+  <span class="token comment"># the path on the guest to mount the folder. And the optional third</span>
+  <span class="token comment"># argument is a set of non-required options.</span>
+  <span class="token comment"># config.vm.synced_folder &quot;../data&quot;, &quot;/vagrant_data&quot;</span>
+
+  <span class="token comment"># Provider-specific configuration so you can fine-tune various</span>
+  <span class="token comment"># backing providers for Vagrant. These expose provider-specific options.</span>
+  <span class="token comment"># Example for VirtualBox:</span>
+
+  config<span class="token punctuation">.</span>vm<span class="token punctuation">.</span>provider <span class="token string">&quot;virtualbox&quot;</span> <span class="token keyword">do</span> <span class="token operator">|</span>vb<span class="token operator">|</span>
+    <span class="token comment"># Display the VirtualBox GUI when booting the machine</span>
+    vb<span class="token punctuation">.</span>gui <span class="token operator">=</span> <span class="token boolean">true</span>
+
+    <span class="token comment"># Customize the amount of memory on the VM:</span>
+    vb<span class="token punctuation">.</span>memory <span class="token operator">=</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">4</span>
+  <span class="token keyword">end</span>
+
+  <span class="token comment"># View the documentation for the provider you are using for more</span>
+  <span class="token comment"># information on available options.</span>
+
+  <span class="token comment"># Enable provisioning with a shell script. Additional provisioners such as</span>
+  <span class="token comment"># Ansible, Chef, Docker, Puppet and Salt are also available. Please see the</span>
+  <span class="token comment"># documentation for more information about their specific syntax and use.</span>
+  <span class="token comment"># config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL</span>
+  <span class="token comment">#   apt-get update</span>
+  <span class="token comment">#   apt-get install -y apache2</span>
+  <span class="token comment"># SHELL</span>
+<span class="token keyword">end</span>
+</code></pre></div><p><code>vagrant up</code> を再実行する。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ vagrant up
+Bringing machine <span class="token string">'default'</span> up with <span class="token string">'virtualbox'</span> provider<span class="token punctuation">..</span>.
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Clearing any previously <span class="token builtin class-name">set</span> forwarded ports<span class="token punctuation">..</span>.
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Fixed port collision <span class="token keyword">for</span> <span class="token number">22</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token number">2222</span>. Now on port <span class="token number">2200</span>.
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Clearing any previously <span class="token builtin class-name">set</span> network interfaces<span class="token punctuation">..</span>.
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Preparing network interfaces based on configuration<span class="token punctuation">..</span>.
+    default: Adapter <span class="token number">1</span>: nat
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Forwarding ports<span class="token punctuation">..</span>.
+    default: <span class="token number">5985</span> <span class="token punctuation">(</span>guest<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token number">55985</span> <span class="token punctuation">(</span>host<span class="token punctuation">)</span> <span class="token punctuation">(</span>adapter <span class="token number">1</span><span class="token punctuation">)</span>
+    default: <span class="token number">5986</span> <span class="token punctuation">(</span>guest<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token number">55986</span> <span class="token punctuation">(</span>host<span class="token punctuation">)</span> <span class="token punctuation">(</span>adapter <span class="token number">1</span><span class="token punctuation">)</span>
+    default: <span class="token number">22</span> <span class="token punctuation">(</span>guest<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token number">2200</span> <span class="token punctuation">(</span>host<span class="token punctuation">)</span> <span class="token punctuation">(</span>adapter <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Running <span class="token string">'pre-boot'</span> VM customizations<span class="token punctuation">..</span>.
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Booting VM<span class="token punctuation">..</span>.
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Waiting <span class="token keyword">for</span> machine to boot. This may take a few minutes<span class="token punctuation">..</span>.
+    default: WinRM address: <span class="token number">127.0</span>.0.1:55985
+    default: WinRM username: IEUser
+    default: WinRM execution_time_limit: PT2H
+    default: WinRM transport: negotiate
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Machine booted and ready<span class="token operator">!</span>
+<span class="token punctuation">[</span>default<span class="token punctuation">]</span> GuestAdditions versions on your <span class="token function">host</span> <span class="token punctuation">(</span><span class="token number">6.1</span>.4<span class="token punctuation">)</span> and guest <span class="token punctuation">(</span><span class="token number">6.0</span>.4<span class="token punctuation">)</span> <span class="token keyword">do</span> not match.
+Copy iso <span class="token function">file</span> C:<span class="token punctuation">\</span>Program Files<span class="token punctuation">\</span>Oracle<span class="token punctuation">\</span>VirtualBox<span class="token punctuation">\</span>VBoxGuestAdditions.iso into the box <span class="token variable">$env</span>:TEMP/VBoxGuestAdditions.iso
+
+～ 省略（Guest Additions アップデート関連）～
+
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Checking <span class="token keyword">for</span> guest additions <span class="token keyword">in</span> VM<span class="token punctuation">..</span>.
+    default: The guest additions on this VM <span class="token keyword">do</span> not match the installed version of
+    default: VirtualBox<span class="token operator">!</span> In <span class="token function">most</span> cases this is fine, but <span class="token keyword">in</span> rare cases it can
+    default: prevent things such as shared folders from working properly. If you see
+    default: shared folder errors, please <span class="token function">make</span> sure the guest additions within the
+    default: virtual machine match the version of VirtualBox you have installed on
+    default: your <span class="token function">host</span> and reload your VM.
+    default:
+    default: Guest Additions Version: <span class="token number">6.0</span>.4
+    default: VirtualBox Version: <span class="token number">6.1</span>
+<span class="token operator">==</span><span class="token operator">&gt;</span> default: Mounting shared folders<span class="token punctuation">..</span>.
+    default: /vagrant <span class="token operator">=</span><span class="token operator">&gt;</span> E:/Development/Vagrant/win10-dev
+</code></pre></div><p>いい感じに動作している。</p> <p>ただ、ゲストOSに自動でログインしてくれない。
+参考にした記事には自動でログインすると書いてあったが、ssh から winrm に変えたからなのか…。よく分からず。</p> <p>ゲストOSの設定でやってしまう方が手っ取り早いかと思い調べてみると以下の記事の <strong>自動サインインの設定</strong> が参考になった。</p> <p><a href="https://beadored.com/windows-auto-sign-in/" target="_blank" rel="noopener noreferrer">Windows の起動時にパスワードを入力せず自動でログインする方法 (自動サインインの設定方法)<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>これで <code>vagrant up</code> 時のエラーは無くなり、自動でログインしてくれるようになった。
+まだ日本語化が出来ていないが、そこはそのうち追記する。</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f4c5d8b9.js" defer></script><script src="/assets/js/2.5001a086.js" defer></script><script src="/assets/js/11.5342cc6b.js" defer></script>
+  </body>
+</html>
