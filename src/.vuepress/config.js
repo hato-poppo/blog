@@ -11,6 +11,6 @@ module.exports = {
       { text: 'Posts', link: '/posts/', exact: false },
     ],
   },
-  base: '/blog/',
+  // base: '/blog/',
   dest: 'docs'
 }
