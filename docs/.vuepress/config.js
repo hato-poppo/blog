@@ -10,5 +10,6 @@ module.exports = {
       { text: 'Home', link: '/', exact: true },
       { text: 'Posts', link: '/posts/', exact: false },
     ],
-  }
+  },
+  dest: 'dist'
 }
