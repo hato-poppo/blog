@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Railsプロジェクト作成手順 | はとのす</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="記事の要約">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.6238c46d.css" as="style"><link rel="preload" href="/blog/assets/js/app.cf1569bc.js" as="script"><link rel="preload" href="/blog/assets/js/2.3fcfcc2a.js" as="script"><link rel="preload" href="/blog/assets/js/18.37dd2176.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.ecd2ed37.js"><link rel="prefetch" href="/blog/assets/js/11.02af86b9.js"><link rel="prefetch" href="/blog/assets/js/12.1587f52c.js"><link rel="prefetch" href="/blog/assets/js/13.afbc0a52.js"><link rel="prefetch" href="/blog/assets/js/14.149dc492.js"><link rel="prefetch" href="/blog/assets/js/15.aec7a079.js"><link rel="prefetch" href="/blog/assets/js/16.5c1850f8.js"><link rel="prefetch" href="/blog/assets/js/17.f1ee1b39.js"><link rel="prefetch" href="/blog/assets/js/19.4119c550.js"><link rel="prefetch" href="/blog/assets/js/20.c52b901c.js"><link rel="prefetch" href="/blog/assets/js/21.5fbf8b5c.js"><link rel="prefetch" href="/blog/assets/js/3.2fdd9eaf.js"><link rel="prefetch" href="/blog/assets/js/4.abeaa20a.js"><link rel="prefetch" href="/blog/assets/js/5.9e471877.js"><link rel="prefetch" href="/blog/assets/js/6.42961e77.js"><link rel="prefetch" href="/blog/assets/js/7.14b9824c.js"><link rel="prefetch" href="/blog/assets/js/8.4b1d5a54.js"><link rel="prefetch" href="/blog/assets/js/9.3fe52c06.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.6238c46d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">はとのす</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/posts/" class="nav-link router-link-active">
+  Posts
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/posts/" class="nav-link router-link-active">
+  Posts
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="frontmatter-title"><a href="#frontmatter-title" class="header-anchor">#</a> Railsプロジェクト作成手順</h1> <p>rails プロジェクトを作成するときの手順を忘れて毎回ググるのでメモ<br> <code>bundle install</code>の<code>--path vendor/bundle</code>は付ける派</p> <h3 id="環境"><a href="#環境" class="header-anchor">#</a> 環境</h3> <ul><li>Ubuntu Server 18.04 LTS</li> <li>rbenv 使用</li> <li>binstubs 使用</li></ul> <h3 id="手順"><a href="#手順" class="header-anchor">#</a> 手順</h3> <h4 id="ディレクトリ作成"><a href="#ディレクトリ作成" class="header-anchor">#</a> ディレクトリ作成</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">mkdir</span> <span class="token punctuation">[</span>project_name<span class="token punctuation">]</span>
+$ <span class="token builtin class-name">cd</span>  <span class="token punctuation">[</span>project_name<span class="token punctuation">]</span>
+</code></pre></div><h4 id="rubyバージョン指定"><a href="#rubyバージョン指定" class="header-anchor">#</a> Rubyバージョン指定</h4> <p>現在のバージョンをチェック</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ruby -v
+ruby <span class="token number">2.7</span>.1p83 <span class="token punctuation">(</span><span class="token number">2020</span>-03-31 revision a0c7c23c9c<span class="token punctuation">)</span> <span class="token punctuation">[</span>x86_64-linux<span class="token punctuation">]</span>
+</code></pre></div><p>インストール済みのバージョンを確認</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ rbenv versions
+  system
+  <span class="token number">2.6</span>.6
+* <span class="token number">2.7</span>.1 <span class="token punctuation">(</span>set by /home/<span class="token punctuation">[</span>user_name<span class="token punctuation">]</span>/.rbenv/version<span class="token punctuation">)</span>
+</code></pre></div><p>バージョン<code>2.6.6</code>を指定</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ rbenv <span class="token builtin class-name">local</span> <span class="token number">2.6</span>.6
+</code></pre></div><p>結果確認</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ruby -v
+ruby <span class="token number">2.6</span>.6p146 <span class="token punctuation">(</span><span class="token number">2020</span>-03-31 revision <span class="token number">67876</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>x86_64-linux<span class="token punctuation">]</span>
+</code></pre></div><h4 id="プロジェクト作成準備"><a href="#プロジェクト作成準備" class="header-anchor">#</a> プロジェクト作成準備</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle config <span class="token builtin class-name">set</span> path <span class="token string">'vendor/bundle'</span>
+</code></pre></div><div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle init
+</code></pre></div><div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle binstubs --path<span class="token operator">=</span>vendor/bin
+<span class="token variable"><span class="token variable">`</span>bundle binstubs<span class="token variable">`</span></span> needs at least one gem to run.
+</code></pre></div><p>→　エラーが出るけど無視でOK<br>
+　　本来<code>bundle binstubs</code>を使う場合は<code>bundle binstubs GEM [OPTIONS]</code>のように<br>
+　　gemを指定して実行するのでエラーが出ている。<br>
+　　今回は<code>.bundle/config</code>ファイルの生成＆BUNDLE_BINのパス指定の為に実行するので無視してもOK（のはず）</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">vi</span> Gemfile
+<span class="token comment"># gem &quot;rails&quot; のコメントアウトを解除</span>
+</code></pre></div><p>gemをインストールする</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle <span class="token function">install</span>
+</code></pre></div><h4 id="railsプロジェクト作成"><a href="#railsプロジェクト作成" class="header-anchor">#</a> Railsプロジェクト作成</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ rails new <span class="token builtin class-name">.</span> <span class="token punctuation">[</span>オプション<span class="token punctuation">]</span>
+Overwrite /home/<span class="token punctuation">[</span>user_name<span class="token punctuation">]</span>/rails_projects/<span class="token punctuation">[</span>project_name<span class="token punctuation">]</span>/Gemfile? <span class="token punctuation">(</span>enter <span class="token string">&quot;h&quot;</span> <span class="token keyword">for</span> <span class="token builtin class-name">help</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>Ynaqdhm<span class="token punctuation">]</span> y
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.cf1569bc.js" defer></script><script src="/blog/assets/js/2.3fcfcc2a.js" defer></script><script src="/blog/assets/js/18.37dd2176.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Git でよく使うコマンド | はとのす</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="記事の要約">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.6238c46d.css" as="style"><link rel="preload" href="/blog/assets/js/app.cf1569bc.js" as="script"><link rel="preload" href="/blog/assets/js/2.3fcfcc2a.js" as="script"><link rel="preload" href="/blog/assets/js/16.5c1850f8.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.ecd2ed37.js"><link rel="prefetch" href="/blog/assets/js/11.02af86b9.js"><link rel="prefetch" href="/blog/assets/js/12.1587f52c.js"><link rel="prefetch" href="/blog/assets/js/13.afbc0a52.js"><link rel="prefetch" href="/blog/assets/js/14.149dc492.js"><link rel="prefetch" href="/blog/assets/js/15.aec7a079.js"><link rel="prefetch" href="/blog/assets/js/17.f1ee1b39.js"><link rel="prefetch" href="/blog/assets/js/18.37dd2176.js"><link rel="prefetch" href="/blog/assets/js/19.4119c550.js"><link rel="prefetch" href="/blog/assets/js/20.c52b901c.js"><link rel="prefetch" href="/blog/assets/js/21.5fbf8b5c.js"><link rel="prefetch" href="/blog/assets/js/3.2fdd9eaf.js"><link rel="prefetch" href="/blog/assets/js/4.abeaa20a.js"><link rel="prefetch" href="/blog/assets/js/5.9e471877.js"><link rel="prefetch" href="/blog/assets/js/6.42961e77.js"><link rel="prefetch" href="/blog/assets/js/7.14b9824c.js"><link rel="prefetch" href="/blog/assets/js/8.4b1d5a54.js"><link rel="prefetch" href="/blog/assets/js/9.3fe52c06.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.6238c46d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">はとのす</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/posts/" class="nav-link router-link-active">
+  Posts
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/posts/" class="nav-link router-link-active">
+  Posts
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="frontmatter-title"><a href="#frontmatter-title" class="header-anchor">#</a> Git でよく使うコマンド</h1> <p>よく使うやつコマンドをメモ</p> <h4 id="変更の退避"><a href="#変更の退避" class="header-anchor">#</a> 変更の退避</h4> <p><code>-u</code>オプションを付与することにより、新規追加ファイルも同時に退避してくれる</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">git</span> stash -u
+</code></pre></div><h4 id="退避した変更を一覧表示"><a href="#退避した変更を一覧表示" class="header-anchor">#</a> 退避した変更を一覧表示</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">git</span> stash list
+</code></pre></div><h4 id="退避した状態を戻す"><a href="#退避した状態を戻す" class="header-anchor">#</a> 退避した状態を戻す</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">git</span> stash apply stash@<span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span>
+</code></pre></div><h4 id="ローカルで変更したファイルを元に戻す"><a href="#ローカルで変更したファイルを元に戻す" class="header-anchor">#</a> ローカルで変更したファイルを元に戻す</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">git</span> checkout HEAD <span class="token punctuation">[</span>file_name<span class="token punctuation">]</span>
+</code></pre></div><h4 id="git-add-ステージング-の取り消し"><a href="#git-add-ステージング-の取り消し" class="header-anchor">#</a> git add（ステージング）の取り消し</h4> <p>基本的に最新のコミットに戻すことが多いので、<strong>[commit_hash]</strong> は<code>HEAD</code>を指定する</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">git</span> reset <span class="token punctuation">[</span>commit_hash<span class="token punctuation">]</span> <span class="token punctuation">[</span>file_name<span class="token punctuation">]</span>
+</code></pre></div><h4 id="追跡しないファイルとして扱う-ファイルは残したまま"><a href="#追跡しないファイルとして扱う-ファイルは残したまま" class="header-anchor">#</a> 追跡しないファイルとして扱う（ファイルは残したまま）</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">git</span> <span class="token function">rm</span> --cached <span class="token punctuation">[</span>file_name<span class="token punctuation">]</span>
+</code></pre></div><h4 id="リモートリポジトリとの差分比較"><a href="#リモートリポジトリとの差分比較" class="header-anchor">#</a> リモートリポジトリとの差分比較</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">git</span> <span class="token function">diff</span> -- <span class="token punctuation">[</span>file_name<span class="token punctuation">]</span>
+</code></pre></div><h4 id="コミット済みタグ付け"><a href="#コミット済みタグ付け" class="header-anchor">#</a> コミット済みタグ付け</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">git</span> tag -a <span class="token punctuation">[</span>tag_name<span class="token punctuation">]</span> -m <span class="token string">'[comment]'</span> <span class="token punctuation">[</span>commit_hash<span class="token punctuation">]</span>
+$ <span class="token function">git</span> push origin <span class="token punctuation">[</span>tag_name<span class="token punctuation">]</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.cf1569bc.js" defer></script><script src="/blog/assets/js/2.3fcfcc2a.js" defer></script><script src="/blog/assets/js/16.5c1850f8.js" defer></script>
+  </body>
+</html>

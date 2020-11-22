@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>まつもとゆきひろ コードの世界（第2章） | はとのす</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="記事の要約">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.6238c46d.css" as="style"><link rel="preload" href="/blog/assets/js/app.cf1569bc.js" as="script"><link rel="preload" href="/blog/assets/js/2.3fcfcc2a.js" as="script"><link rel="preload" href="/blog/assets/js/19.4119c550.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.ecd2ed37.js"><link rel="prefetch" href="/blog/assets/js/11.02af86b9.js"><link rel="prefetch" href="/blog/assets/js/12.1587f52c.js"><link rel="prefetch" href="/blog/assets/js/13.afbc0a52.js"><link rel="prefetch" href="/blog/assets/js/14.149dc492.js"><link rel="prefetch" href="/blog/assets/js/15.aec7a079.js"><link rel="prefetch" href="/blog/assets/js/16.5c1850f8.js"><link rel="prefetch" href="/blog/assets/js/17.f1ee1b39.js"><link rel="prefetch" href="/blog/assets/js/18.37dd2176.js"><link rel="prefetch" href="/blog/assets/js/20.c52b901c.js"><link rel="prefetch" href="/blog/assets/js/21.5fbf8b5c.js"><link rel="prefetch" href="/blog/assets/js/3.2fdd9eaf.js"><link rel="prefetch" href="/blog/assets/js/4.abeaa20a.js"><link rel="prefetch" href="/blog/assets/js/5.9e471877.js"><link rel="prefetch" href="/blog/assets/js/6.42961e77.js"><link rel="prefetch" href="/blog/assets/js/7.14b9824c.js"><link rel="prefetch" href="/blog/assets/js/8.4b1d5a54.js"><link rel="prefetch" href="/blog/assets/js/9.3fe52c06.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.6238c46d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">はとのす</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/posts/" class="nav-link router-link-active">
+  Posts
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/blog/posts/" class="nav-link router-link-active">
+  Posts
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="frontmatter-title"><a href="#frontmatter-title" class="header-anchor">#</a> まつもとゆきひろ コードの世界（第2章）</h1> <p>先日、久しぶりに「まつもとゆきひろ コードの世界」の第2章を読み返した。<br>
+10年以上前の本だけど今でも十分勉強になることが書いてあるので、読んだことの無い方は一度読んでみて欲しい。</p> <p>[https://tatsu-zine.com/books/codenosekai:embed:cite]</p> <p>今回は「動的型付け言語のデメリットを克服する方法」について、自分の感想も交えてメモしておく。</p> <h2 id="動的型付け言語のデメリットと対処方法について"><a href="#動的型付け言語のデメリットと対処方法について" class="header-anchor">#</a> 動的型付け言語のデメリットと対処方法について</h2> <h3 id="エラーの発見が実行時になる"><a href="#エラーの発見が実行時になる" class="header-anchor">#</a> エラーの発見が実行時になる</h3> <p>静的型付け言語であればコンパイル時にエラーが発見できるが、<br>
+動的型付け言語の場合は実行されるまで発見できない。</p> <h4 id="対処方法"><a href="#対処方法" class="header-anchor">#</a> 対処方法</h4> <p>単体テストをきっちりやる。<br>
+ちゃんとテストする習慣が定着していれば、静的型付け言語のようなコンパイル時のチェックが無くてもコードの信頼性は下がらない。</p> <h4 id="感想"><a href="#感想" class="header-anchor">#</a> 感想</h4> <p>テストをきっちりやることはとても重要。<br>
+問題があるとすれば、みんながみんなテストをきっちりやっているとは限らない　という点か。</p> <h3 id="プログラムを読解する際のヒントが少ない"><a href="#プログラムを読解する際のヒントが少ない" class="header-anchor">#</a> プログラムを読解する際のヒントが少ない</h3> <p>静的型付け言語であれば引数や変数の型がプログラム読解のヒントになり得るが、<br>
+動的型付け言語の場合は読解のヒントになる情報が少ない。</p> <h4 id="対処方法-2"><a href="#対処方法-2" class="header-anchor">#</a> 対処方法</h4> <p>ドキュメントを整備する。<br>
+Ruby には <strong>RDoc</strong> という標準ライブラリが用意されていて、Ruby で書かれたソースコードからドキュメントを自動生成できる。</p> <p>[https://docs.ruby-lang.org/ja/latest/library/rdoc.html:title]<br>
+[http://ruby.gfd-dennou.org/tutorial/rdoc/:title]</p> <h4 id="感想-2"><a href="#感想-2" class="header-anchor">#</a> 感想</h4> <p>正直な話、動的型付け言語だから読解に困った　という経験が無い。<br>
+あった方が良いのは間違いないけど、デメリットと言うほどのものなのかどうかはよく分からない。</p> <p>型云々の話ではないけど、プログラム読解についてはもっと別のところにポイントがある（変数に再代入しないとか）と思う。</p> <p>それよりも気になったのが、ドキュメントの自動生成について「Ruby　ドキュメント　自動生成」で簡単に調べてみたが最近の情報は出てこなかった。<br>
+特に目新しい情報が無いからなのか、ドキュメントの自動生成という対処方法自体が主流じゃなくなったからなのか…。</p> <h3 id="実行速度が遅い"><a href="#実行速度が遅い" class="header-anchor">#</a> 実行速度が遅い</h3> <p>同様の処理を行った場合、静的型付け言語と比べると動的型付け言語の方が実行速度が遅いことが多い。<br>
+実行時の型チェックのコストも影響していると思われるが、言語処理系がインタプリタかコンパイラかという部分の影響が大きい。</p> <h4 id="対処方法-ではないけど"><a href="#対処方法-ではないけど" class="header-anchor">#</a> 対処方法（ではないけど）</h4> <p>昔よりもコンピューターの性能が向上しているので、大抵は実行効率よりも柔軟性や生産性の方が重要。</p> <h4 id="感想-3"><a href="#感想-3" class="header-anchor">#</a> 感想</h4> <p>動的型付け言語のメリットである、「柔軟性」と「生産性」はとても良いと思う。<br>
+ただ、システムを開発する上ではユーザビリティを考えると実行速度もあった方が嬉しい。</p> <p>この辺りは2.6で実装されたJITコンパイルがもっと実用的になることに期待する。</p> <h3 id="まとめ"><a href="#まとめ" class="header-anchor">#</a> まとめ</h3> <p>動的型付け言語にはデメリットもあるが、ちゃんと対応すれば克服できる　という内容が書いてあった。<br>
+自分は静的型付けと動的型付けのどちらも好きだけど、言語としてはRubyが一番好きなのでこれからもRubyを使っていきたいと思っている。</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.cf1569bc.js" defer></script><script src="/blog/assets/js/2.3fcfcc2a.js" defer></script><script src="/blog/assets/js/19.4119c550.js" defer></script>
+  </body>
+</html>
