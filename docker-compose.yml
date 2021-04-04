@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app:cached
+      - node_modules:/usr/src/app/node_modules
+    tty: true # これがないと落ちる
+    stdin_open: true # これがないと落ちる
+    # command: /bin/sh
+    expose: ["8080"]
+    ports: ["8080:8080"]
+
+volumes:
+  node_modules:
