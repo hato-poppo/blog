@@ -36,7 +36,7 @@ module.exports = {
 
       // Your avatar image
       // Set to external link
-      avatar: 'https://www.meteorlxy.cn/assets/img/avatar.jpg',
+      avatar: '/img/avatar.jpg',
       // Or put into `.vuepress/public` directory. E.g. `.vuepress/public/img/avatar.jpg`
       // avatar: '/img/avatar.jpg',
 
@@ -67,7 +67,7 @@ module.exports = {
       // The background of the header. You can choose to use an image, or to use random pattern (geopattern)
       background: {
         // URL of the background image. If you set the URL, the random pattern will not be generated, and the `useGeo` will be ignored.
-        url: '/assets/img/bg.jpg',
+        // url: '/assets/img/bg.jpg',
 
         // Use random pattern. If you set it to `false`, and you don't set the image URL, the background will be blank.
         useGeo: true,
@@ -94,7 +94,7 @@ module.exports = {
       // The background of the info card's header. You can choose to use an image, or to use random pattern (geopattern)
       headerBackground: {
         // URL of the background image. If you set the URL, the random pattern will not be generated, and the `useGeo` will be ignored.
-        url: '/assets/img/bg.jpg',
+        // url: '/assets/img/bg.jpg',
 
         // Use random pattern. If you set it to `false`, and you don't set the image URL, the background will be blank.
         useGeo: true,
