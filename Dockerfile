@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN apt update
+RUN apt install git
 RUN npm install
 ENV PATH $PATH:./node_modules/.bin
 
