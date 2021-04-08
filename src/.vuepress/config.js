@@ -36,7 +36,7 @@ module.exports = {
 
       // Your avatar image
       // Set to external link
-      avatar: '/img/avatar.jpg',
+      avatar: '/blog/img/avatar.jpg',
       // Or put into `.vuepress/public` directory. E.g. `.vuepress/public/img/avatar.jpg`
       // avatar: '/img/avatar.jpg',
 
@@ -108,6 +108,7 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/', exact: true },
       { text: 'Posts', link: '/posts/', exact: false },
+      { text: 'Notes', link: 'https://github.com/hato-poppo/notes' },
     ],
 
     // Enable smooth scrolling or not
