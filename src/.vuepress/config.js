@@ -26,7 +26,7 @@ module.exports = {
       nickname: 'はとぽっぽ丸',
 
       // Introduction of yourself (HTML supported)
-      description: 'Happy Coding<br/>Happy Life',
+      description: 'やりたいことが多すぎて散らかってる系エンジニア',
 
       // Email
       // email: 'meteor.lxy@foxmail.com',
