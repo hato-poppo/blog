@@ -6,7 +6,7 @@
     <title>Railsプロジェクト作成手順 | はとのす</title>
     <meta name="generator" content="VuePress 1.7.1">
     <meta name="description" content="記事の要約">
-    <link rel="preload" href="/blog/assets/css/0.styles.0cb2e612.css" as="style"><link rel="preload" href="/blog/assets/js/app.5fe0ddab.js" as="script"><link rel="preload" href="/blog/assets/js/7.75fee316.js" as="script"><link rel="preload" href="/blog/assets/js/20.1218ffd6.js" as="script"><link rel="prefetch" href="/blog/assets/js/1.1076c19e.js"><link rel="prefetch" href="/blog/assets/js/10.13485229.js"><link rel="prefetch" href="/blog/assets/js/11.33587e33.js"><link rel="prefetch" href="/blog/assets/js/12.ced50035.js"><link rel="prefetch" href="/blog/assets/js/13.f55f6e7d.js"><link rel="prefetch" href="/blog/assets/js/14.0c223313.js"><link rel="prefetch" href="/blog/assets/js/15.298321c1.js"><link rel="prefetch" href="/blog/assets/js/16.2c831332.js"><link rel="prefetch" href="/blog/assets/js/17.7bd0d8b0.js"><link rel="prefetch" href="/blog/assets/js/18.bc424a80.js"><link rel="prefetch" href="/blog/assets/js/19.8233e632.js"><link rel="prefetch" href="/blog/assets/js/21.325ef084.js"><link rel="prefetch" href="/blog/assets/js/22.027be5b3.js"><link rel="prefetch" href="/blog/assets/js/23.71757989.js"><link rel="prefetch" href="/blog/assets/js/24.e54ad7b5.js"><link rel="prefetch" href="/blog/assets/js/25.41f1350b.js"><link rel="prefetch" href="/blog/assets/js/3.b168fdc5.js"><link rel="prefetch" href="/blog/assets/js/4.8bbc9c5a.js"><link rel="prefetch" href="/blog/assets/js/5.5a78047a.js"><link rel="prefetch" href="/blog/assets/js/6.bb2544d7.js"><link rel="prefetch" href="/blog/assets/js/8.ccd87035.js"><link rel="prefetch" href="/blog/assets/js/9.c12e53df.js">
+    <link rel="preload" href="/blog/assets/css/0.styles.0cb2e612.css" as="style"><link rel="preload" href="/blog/assets/js/app.fa912c9d.js" as="script"><link rel="preload" href="/blog/assets/js/7.75fee316.js" as="script"><link rel="preload" href="/blog/assets/js/20.77cc116a.js" as="script"><link rel="prefetch" href="/blog/assets/js/1.1076c19e.js"><link rel="prefetch" href="/blog/assets/js/10.13485229.js"><link rel="prefetch" href="/blog/assets/js/11.33587e33.js"><link rel="prefetch" href="/blog/assets/js/12.ced50035.js"><link rel="prefetch" href="/blog/assets/js/13.f55f6e7d.js"><link rel="prefetch" href="/blog/assets/js/14.951cd381.js"><link rel="prefetch" href="/blog/assets/js/15.56b1f410.js"><link rel="prefetch" href="/blog/assets/js/16.c164af8c.js"><link rel="prefetch" href="/blog/assets/js/17.9a822660.js"><link rel="prefetch" href="/blog/assets/js/18.0759d122.js"><link rel="prefetch" href="/blog/assets/js/19.97655378.js"><link rel="prefetch" href="/blog/assets/js/21.702c5691.js"><link rel="prefetch" href="/blog/assets/js/22.68efdd26.js"><link rel="prefetch" href="/blog/assets/js/23.2eb4fb1e.js"><link rel="prefetch" href="/blog/assets/js/24.e54ad7b5.js"><link rel="prefetch" href="/blog/assets/js/25.41f1350b.js"><link rel="prefetch" href="/blog/assets/js/3.b168fdc5.js"><link rel="prefetch" href="/blog/assets/js/4.8bbc9c5a.js"><link rel="prefetch" href="/blog/assets/js/5.5a78047a.js"><link rel="prefetch" href="/blog/assets/js/6.bb2544d7.js"><link rel="prefetch" href="/blog/assets/js/8.ccd87035.js"><link rel="prefetch" href="/blog/assets/js/9.c12e53df.js">
     <link rel="stylesheet" href="/blog/assets/css/0.styles.0cb2e612.css">
   </head>
   <body>
@@ -20,36 +20,35 @@
           Railsプロジェクト作成手順
         </h1></div></div></div></header> <div class="container clearfix show-aside" data-v-4dd605a1 data-v-4dd605a1><main class="main" data-v-4dd605a1><div class="post" data-v-4dd605a1 data-v-4dd605a1><section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
       作成日 : 2020-10-04
-    </span> <!----></section> <section class="post-links" data-v-4e23451f><a href="/blog/posts/2020/09/30/_20200930235907.html" class="post-link" data-v-4e23451f>
+    </span> <span class="update-date" data-v-4e23451f>
+      更新日 : 2021-04-08
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/blog/posts/2020/09/30/_20200930235907.html" class="post-link" data-v-4e23451f>
       前の投稿 : vagrant + プロキシ環境にdocker導入
     </a> <a href="/blog/posts/2020/10/31/_20201031235937.html" class="post-link" data-v-4e23451f>
       次の投稿 : まつもとゆきひろ コードの世界（第2章）
-    </a></section></section> <article class="main-div"><div class="post-content content content__default"><h1 id="frontmatter-title"><a href="#frontmatter-title" class="header-anchor">#</a> Railsプロジェクト作成手順</h1> <p>rails プロジェクトを作成するときの手順を忘れて毎回ググるのでメモ<br> <code>bundle install</code>の<code>--path vendor/bundle</code>は付ける派</p> <h3 id="環境"><a href="#環境" class="header-anchor">#</a> 環境</h3> <ul><li>Ubuntu Server 18.04 LTS</li> <li>rbenv 使用</li> <li>binstubs 使用</li></ul> <h3 id="手順"><a href="#手順" class="header-anchor">#</a> 手順</h3> <h4 id="ディレクトリ作成"><a href="#ディレクトリ作成" class="header-anchor">#</a> ディレクトリ作成</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">mkdir</span> <span class="token punctuation">[</span>project_name<span class="token punctuation">]</span>
-$ <span class="token builtin class-name">cd</span>  <span class="token punctuation">[</span>project_name<span class="token punctuation">]</span>
-</code></pre></div><h4 id="rubyバージョン指定"><a href="#rubyバージョン指定" class="header-anchor">#</a> Rubyバージョン指定</h4> <p>現在のバージョンをチェック</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ruby -v
-ruby <span class="token number">2.7</span>.1p83 <span class="token punctuation">(</span><span class="token number">2020</span>-03-31 revision a0c7c23c9c<span class="token punctuation">)</span> <span class="token punctuation">[</span>x86_64-linux<span class="token punctuation">]</span>
-</code></pre></div><p>インストール済みのバージョンを確認</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ rbenv versions
-  system
-  <span class="token number">2.6</span>.6
-* <span class="token number">2.7</span>.1 <span class="token punctuation">(</span>set by /home/<span class="token punctuation">[</span>user_name<span class="token punctuation">]</span>/.rbenv/version<span class="token punctuation">)</span>
-</code></pre></div><p>バージョン<code>2.6.6</code>を指定</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ rbenv <span class="token builtin class-name">local</span> <span class="token number">2.6</span>.6
-</code></pre></div><p>結果確認</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ruby -v
-ruby <span class="token number">2.6</span>.6p146 <span class="token punctuation">(</span><span class="token number">2020</span>-03-31 revision <span class="token number">67876</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>x86_64-linux<span class="token punctuation">]</span>
-</code></pre></div><h4 id="プロジェクト作成準備"><a href="#プロジェクト作成準備" class="header-anchor">#</a> プロジェクト作成準備</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle config <span class="token builtin class-name">set</span> path <span class="token string">'vendor/bundle'</span>
-</code></pre></div><div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle init
-</code></pre></div><div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle binstubs --path<span class="token operator">=</span>vendor/bin
-<span class="token variable"><span class="token variable">`</span>bundle binstubs<span class="token variable">`</span></span> needs at least one gem to run.
-</code></pre></div><p>→　エラーが出るけど無視でOK<br>
-　　本来<code>bundle binstubs</code>を使う場合は<code>bundle binstubs GEM [OPTIONS]</code>のように<br>
-　　gemを指定して実行するのでエラーが出ている。<br>
-　　今回は<code>.bundle/config</code>ファイルの生成＆BUNDLE_BINのパス指定の為に実行するので無視してもOK（のはず）</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">vi</span> Gemfile
+    </a></section></section> <article class="main-div"><div class="post-content content content__default"><h1 id="frontmatter-title"><a href="#frontmatter-title" class="header-anchor">#</a> Railsプロジェクト作成手順</h1> <p>流れは覚えているけど、毎回手入力は面倒なのでメモ<br> <code>bundle install</code>の<code>--path vendor/bundle</code>は付ける派</p> <h3 id="環境"><a href="#環境" class="header-anchor">#</a> 環境</h3> <ul><li>Ubuntu Server 18.04 LTS</li> <li>rbenv 使用</li> <li>binstubs 使用</li></ul> <h3 id="プロジェクト用フォルダ作成"><a href="#プロジェクト用フォルダ作成" class="header-anchor">#</a> プロジェクト用フォルダ作成</h3> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">mkdir</span> <span class="token punctuation">{</span>project name<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token builtin class-name">cd</span> <span class="token variable">$_</span>
+</code></pre></div><h3 id="bundler-設定追加"><a href="#bundler-設定追加" class="header-anchor">#</a> Bundler 設定追加</h3> <div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle config --local bin <span class="token string">'vendor/bin'</span>
+$ bundle config --local path <span class="token string">'vendor/bundle'</span>
+<span class="token comment"># 確認</span>
+$ bundle config --local
+Settings are listed <span class="token keyword">in</span> order of priority. The <span class="token function">top</span> value will be used.
+bin
+Set <span class="token keyword">for</span> your <span class="token builtin class-name">local</span> app <span class="token punctuation">(</span>/home/vagrant/applications/scheduler/.bundle/config<span class="token punctuation">)</span>: <span class="token string">&quot;vendor/bin&quot;</span>
+path
+Set <span class="token keyword">for</span> your <span class="token builtin class-name">local</span> app <span class="token punctuation">(</span>/home/vagrant/applications/scheduler/.bundle/config<span class="token punctuation">)</span>: <span class="token string">&quot;vendor/bundle&quot;</span>
+</code></pre></div><h3 id="gemfile-生成"><a href="#gemfile-生成" class="header-anchor">#</a> Gemfile 生成</h3> <div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle init
+</code></pre></div><h3 id="rails-インストール"><a href="#rails-インストール" class="header-anchor">#</a> Rails インストール</h3> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">vi</span> Gemfile
 <span class="token comment"># gem &quot;rails&quot; のコメントアウトを解除</span>
-</code></pre></div><p>gemをインストールする</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ bundle <span class="token function">install</span>
-</code></pre></div><h4 id="railsプロジェクト作成"><a href="#railsプロジェクト作成" class="header-anchor">#</a> Railsプロジェクト作成</h4> <div class="language-sh extra-class"><pre class="language-sh"><code>$ rails new <span class="token builtin class-name">.</span> <span class="token punctuation">[</span>オプション<span class="token punctuation">]</span>
-Overwrite /home/<span class="token punctuation">[</span>user_name<span class="token punctuation">]</span>/rails_projects/<span class="token punctuation">[</span>project_name<span class="token punctuation">]</span>/Gemfile? <span class="token punctuation">(</span>enter <span class="token string">&quot;h&quot;</span> <span class="token keyword">for</span> <span class="token builtin class-name">help</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>Ynaqdhm<span class="token punctuation">]</span> y
+$ bundle <span class="token function">install</span>
+</code></pre></div><h3 id="プロジェクト作成"><a href="#プロジェクト作成" class="header-anchor">#</a> プロジェクト作成</h3> <p>Rails 6.1以降なら --minimal オプションが使える<br>
+　　
+指定オプションについて：</p> <ul><li>DBはMySQL（<code>-d mysql</code>）</li> <li>標準のテストではなく、Rspecを使用（<code>--skip-test</code>）</li> <li>APIモード（<code>--api</code>）</li> <li>最小構成（<code>--minimal</code>）</li></ul> <div class="language-sh extra-class"><pre class="language-sh"><code>$ rails new <span class="token builtin class-name">.</span> -d mysql --skip-test --api --minimal
+Overwrite /home/<span class="token punctuation">[</span>user_name<span class="token punctuation">]</span>/applications/<span class="token punctuation">[</span>project_name<span class="token punctuation">]</span>/Gemfile? <span class="token punctuation">(</span>enter <span class="token string">&quot;h&quot;</span> <span class="token keyword">for</span> <span class="token builtin class-name">help</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>Ynaqdhm<span class="token punctuation">]</span> y
 </code></pre></div></div></article> <section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
       作成日 : 2020-10-04
-    </span> <!----></section> <section class="post-links" data-v-4e23451f><a href="/blog/posts/2020/09/30/_20200930235907.html" class="post-link" data-v-4e23451f>
+    </span> <span class="update-date" data-v-4e23451f>
+      更新日 : 2021-04-08
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/blog/posts/2020/09/30/_20200930235907.html" class="post-link" data-v-4e23451f>
       前の投稿 : vagrant + プロキシ環境にdocker導入
     </a> <a href="/blog/posts/2020/10/31/_20201031235937.html" class="post-link" data-v-4e23451f>
       次の投稿 : まつもとゆきひろ コードの世界（第2章）
@@ -64,6 +63,6 @@ Overwrite /home/<span class="token punctuation">[</span>user_name<span class="to
     </a> <span data-v-1375e54c> | </span> <a href="https://github.com/meteorlxy/vuepress-theme-meteorlxy" target="_blank" data-v-1375e54c>
         meteorlxy
       </a></p> <p class="footer-text" data-v-1375e54c>Copyright 2018-present <a href="https://github.com/meteorlxy" target="_blank">meteorlxy</a> | MIT License</p></footer></div><div class="global-ui"><!----><!----></div></div>
-    <script src="/blog/assets/js/app.5fe0ddab.js" defer></script><script src="/blog/assets/js/7.75fee316.js" defer></script><script src="/blog/assets/js/20.1218ffd6.js" defer></script>
+    <script src="/blog/assets/js/app.fa912c9d.js" defer></script><script src="/blog/assets/js/7.75fee316.js" defer></script><script src="/blog/assets/js/20.77cc116a.js" defer></script>
   </body>
 </html>
